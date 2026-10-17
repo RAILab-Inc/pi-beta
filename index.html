@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>RAILab × Physical Intelligence</title>
   <meta name="description" content="RAILab is applying for the Physical Intelligence API beta: a custom 3-DOF pipetting arm to learn which embodied lab motions decide a reaction's outcome.">
-  <meta property="og:title" content="Some chemistry only shows up when you watch how the hand moves">
+  <meta property="og:title" content="Some chemistry data only shows up when an embodied agent runs and watches the reaction">
   <meta property="og:description" content="RAILab's application for the Physical Intelligence API beta.">
   <meta property="og:image" content="https://railab-inc.github.io/pi-beta/assets/img/hgs-stirring-products.jpg">
   <meta property="og:type" content="article">
@@ -20,24 +20,24 @@
 <article class="post">
 
   <header class="post-header">
-    <p class="kicker">Application · Physical Intelligence API beta</p>
-    <h1>Some chemistry only shows up when you watch how the hand moves</h1>
+    <p class="kicker">Application for Physical Intelligence API BETA</p>
+    <h1>Some chemistry data only shows up when an embodied agent runs and watches the reaction</h1>
     <p class="byline">Alan Zhou &amp; Sihan Chen · RAILab · October 2026</p>
   </header>
 
-  <p class="lede">RAILab builds robotic hardware for chemistry and biology labs and collects lab data that can only be explained by the motion that produced it. We want to use Physical Intelligence models to find which motions decide a reaction's outcome. This post explains who we are, the problem we ran into, how we plan to attack it, what success looks like, and why we think it matters to PI.</p>
+  <p class="lede">RAILab builds robotic hardware for chemistry and biology labs and collects lab data that can only be explained by the motion that produced it. We want to use Physical Intelligence models to find which motions decide a reaction's outcome.</p>
 
   <h2><span class="num">01</span>Who we are</h2>
 
   <p>RAILab is a startup building hardware infrastructure for chemistry and biology labs. We collect lab data that needs an <em>embodied</em> explanation: data where the result depends on how an operation was physically carried out.</p>
 
-  <p><strong>Alan Zhou</strong>, Founder &amp; CEO, is a PhD candidate in the Department of Civil &amp; Environmental Engineering, and a hardware and robotics engineer with bench scientist experience. Alan has built automation for powder-weighing-heavy lab workflows, deployed at UIUC, Persist.AI, WUSTL and elsewhere.</p>
+  <p><strong>Alan Zhou</strong>, Founder &amp; CEO, is a PhD candidate in the Department of Civil &amp; Environmental Engineering, and a hardware and robotics engineer with bench scientist experience. He has built automation for powder-weighing-heavy lab workflows, deployed at UIUC, Persist.AI, WUSTL, and elsewhere.</p>
 
-  <p><strong>Sihan Chen</strong>, Co-founder &amp; CSO, is a PhD candidate in the Department of Chemistry and an AI + Chemistry researcher. Sihan developed primitives that break general chemistry workflows down into robot motions.</p>
+  <p><strong>Sihan Chen</strong>, Co-founder &amp; CSO, is a PhD candidate in the Department of Chemistry and an AI + Chemistry researcher. She developed primitives that break general chemistry workflows down into robot motions.</p>
 
   <h2><span class="num">02</span>The problem</h2>
 
-  <p>Lab automation usually describes chemistry with discrete steps: <em>add A to B, stir, heat, wait</em>. A lot of real lab behavior can't be captured that way. The outcome depends on continuous, physical details those steps leave out: how fast the liquid goes in, at what angle, how deep the tip sits, how the solution is stirred.</p>
+  <p>Lab automation usually describes chemistry with discrete steps: <em>add A to B, stir, heat, wait</em>. A lot of real lab behavior can't be captured that way.</p>
 
   <p>We found this out by accident. Adding polysulfide (<span class="chem">S<sub>n</sub><sup>2−</sup></span>) to mercury-containing wastewater (<span class="chem">Hg<sup>2+</sup></span>) produces <strong>visibly different products</strong> depending on the stirring profile and how fast the liquid is added.</p>
 
@@ -47,7 +47,7 @@
     <figcaption>Same reagents, same amounts. Only the stirring and addition profile changed. Left: dark HgS. Right: yellow, poorly crystalline HgS.</figcaption>
   </figure>
 
-  <p>This isn't just a curiosity. The yellow HgS has poor crystallinity, so it can release <span class="chem">Hg<sup>2+</sup></span> back into the water, where it poisons people. Whether a mercury cleanup actually works depends on motion details that nobody records.</p>
+  <p>This is a real issue for our environments. The yellow HgS has poor crystallinity, so it can release <span class="chem">Hg<sup>2+</sup></span> back into the water, where it poisons people. Whether a mercury cleanup actually works depends on motion details that nobody records.</p>
 
   <p>And it isn't just mercury. The same kind of problem shows up across bio and chem labs: in cell culture, in drug discovery, and in materials discovery.</p>
 

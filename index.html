@@ -17,6 +17,17 @@
 </head>
 <body>
 
+<nav class="toc" aria-label="Chapters">
+  <p class="toc-title">Contents</p>
+  <ol>
+    <li><a href="#who"><span class="num">01</span>Who we are</a></li>
+    <li><a href="#problem"><span class="num">02</span>The problem</a></li>
+    <li><a href="#approach"><span class="num">03</span>Our approach</a></li>
+    <li><a href="#outcome"><span class="num">04</span>The outcome</a></li>
+    <li><a href="#why"><span class="num">05</span>Why it matters to PI</a></li>
+  </ol>
+</nav>
+
 <article class="post">
 
   <header class="post-header">
@@ -27,7 +38,7 @@
 
   <p class="lede">RAILab builds robotic hardware for chemistry and biology labs and collects lab data that can only be explained by the motion that produced it. We want to let a Physical Intelligence model explore a reaction with its own hands, find the motion profiles that produce different products, and tell us what separates them.</p>
 
-  <h2><span class="num">01</span>Who we are</h2>
+  <h2 id="who"><span class="num">01</span>Who we are</h2>
 
   <p>RAILab is a startup building hardware infrastructure for chemistry and biology labs. We collect lab data that needs an <em>embodied</em> explanation: data where the result depends on how an operation was physically carried out.</p>
 
@@ -35,7 +46,7 @@
 
   <p><strong>Sihan Chen</strong>, Co-founder &amp; CSO, is a PhD candidate in the Department of Chemistry and an AI + Chemistry researcher. She developed primitives that break general chemistry workflows down into robot motions.</p>
 
-  <h2><span class="num">02</span>The problem</h2>
+  <h2 id="problem"><span class="num">02</span>The problem</h2>
 
   <p>Lab automation usually describes chemistry with discrete steps: <em>add A to B, stir, heat, wait</em>. A lot of real lab behavior can't be captured that way.</p>
 
@@ -51,7 +62,7 @@
 
   <p>And it isn't just mercury. The same kind of problem shows up across bio and chem labs: in cell culture, in drug discovery, and in materials discovery.</p>
 
-  <h2><span class="num">03</span>Our approach</h2>
+  <h2 id="approach"><span class="num">03</span>Our approach</h2>
 
   <p>We're building our own 3-DOF robot arm that carries an electric pipette. Instead of tuning a few settings ourselves, we want to hand those degrees of freedom to an embodied model and let it explore.</p>
 
@@ -138,7 +149,7 @@
 
   <p>To teach the model our hardware, we'll start with about <strong>3 hours of high-quality teleoperated demonstrations</strong> on the HgS reaction. Each episode records the operation data (position, velocity and motor current for Z, Rz and Ry over time), the dispensing data from the electric pipette, video of the vessel throughout the reaction, and the outcome: which product formed, and its crystallinity.</p>
 
-  <h2><span class="num">04</span>The outcome</h2>
+  <h2 id="outcome"><span class="num">04</span>The outcome</h2>
 
   <p>Here is what success looks like with a PI model in the loop.</p>
 
@@ -149,7 +160,7 @@
   </ol>
 
 
-  <h2><span class="num">05</span>Why it matters to Physical Intelligence</h2>
+  <h2 id="why"><span class="num">05</span>Why it matters to Physical Intelligence</h2>
 
   <p>This project tests two things that are hard to show with standard robot arms and standard lab tasks.</p>
 
@@ -163,5 +174,24 @@
 
 </article>
 
+
+<script>
+  (function () {
+    var links = document.querySelectorAll('.toc a');
+    var map = {};
+    links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+    var heads = Array.prototype.map.call(links, function (a) {
+      return document.getElementById(a.getAttribute('href').slice(1));
+    });
+    function update() {
+      var current = heads[0];
+      heads.forEach(function (h) { if (h.getBoundingClientRect().top < 160) current = h; });
+      links.forEach(function (a) { a.classList.remove('active'); });
+      if (window.scrollY > 200) map[current.id].classList.add('active');
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  })();
+</script>
 </body>
 </html>

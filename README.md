@@ -11,6 +11,5 @@ Plain HTML + CSS, no build step. Open `index.html` in a browser to preview.
 
 ## To do
 
-- Replace the placeholder email in the footer (`index.html`, search for `TODO`).
 - Swap the arm schematic for the CAD render (`assets/img/arm-cad.png`) once it's drawn.
 - Optional: headshots to replace the initials avatars.

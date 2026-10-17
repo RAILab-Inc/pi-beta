@@ -25,7 +25,7 @@
     <p class="byline">Alan Zhou &amp; Sihan Chen · RAILab · October 2026</p>
   </header>
 
-  <p class="lede">RAILab builds robotic hardware for chemistry and biology labs and collects lab data that can only be explained by the motion that produced it. We want to use Physical Intelligence models to find which motions decide a reaction's outcome.</p>
+  <p class="lede">RAILab builds robotic hardware for chemistry and biology labs and collects lab data that can only be explained by the motion that produced it. We want to let a Physical Intelligence model explore a reaction with its own hands, find the motion profiles that produce different products, and tell us what separates them.</p>
 
   <h2><span class="num">01</span>Who we are</h2>
 
@@ -53,7 +53,7 @@
 
   <h2><span class="num">03</span>Our approach</h2>
 
-  <p>We're building our own 3-DOF robot arm that carries an electric pipette. It explores the physical parameters of the reaction to find which motions change crystallinity.</p>
+  <p>We're building our own 3-DOF robot arm that carries an electric pipette. Instead of tuning a few settings ourselves, we want to hand those degrees of freedom to an embodied model and let it explore.</p>
 
   <figure class="diagram">
     <svg viewBox="0 0 460 340" role="img" aria-labelledby="arm-title arm-desc">
@@ -125,7 +125,7 @@
     </table>
   </div>
 
-  <p>That gives a PI model four parameters to control:</p>
+  <p>That gives the PI model 3+1 degrees of freedom to explore with:</p>
 
   <ul>
     <li><strong>Tip depth:</strong> how far the tip is submerged.</li>
@@ -134,7 +134,9 @@
     <li><strong>Tip tilt angle:</strong> the angle the liquid is added at.</li>
   </ul>
 
-  <p>We'll collect about <strong>3 hours of high-quality teleoperated demonstrations</strong> on the HgS reaction. Each episode records the operation data (position, velocity and motor current for Z, Rz and Ry over time), the dispensing data from the electric pipette, video of the vessel throughout the reaction, and the outcome: which product formed, and its crystallinity.</p>
+  <p>Each run is a full motion profile, not a fixed set of numbers: how depth, stirring, dispensing and tilt change together over the course of the reaction. The model is free to try profiles we would never think to write down.</p>
+
+  <p>To teach the model our hardware, we'll start with about <strong>3 hours of high-quality teleoperated demonstrations</strong> on the HgS reaction. Each episode records the operation data (position, velocity and motor current for Z, Rz and Ry over time), the dispensing data from the electric pipette, video of the vessel throughout the reaction, and the outcome: which product formed, and its crystallinity.</p>
 
   <h2><span class="num">04</span>The outcome</h2>
 
@@ -142,11 +144,11 @@
 
   <ol class="outcomes">
     <li><strong>The PI model learns to run our hardware.</strong> Trained on our teleoperation data and video, it controls the arm and the electric pipette directly.</li>
-    <li><strong>It makes both crystals, with no prior knowledge.</strong> Without any built-in chemistry knowledge, the model learns to produce either product on demand: the well-crystallized HgS or the poorly crystalline yellow one.</li>
-    <li><strong>It explains the difference.</strong> The model summarizes which operational differences in depth, stirring, dispense rate and tilt lead to each crystal.</li>
+    <li><strong>It explores and finds both crystals.</strong> With no chemistry knowledge built in, the model explores within the 3+1 degrees of freedom and finds motion profiles that produce each product: the well-crystallized HgS and the poorly crystalline yellow one.</li>
+    <li><strong>It explains what separates the two.</strong> Grouping the profiles by the crystal they produced, the model describes how the two categories differ in depth, stirring, dispense rate and tilt.</li>
   </ol>
 
-  <p>A summary from step 3 might look something like this (a hypothetical example):</p>
+  <p>A comparison of the two profile categories might look something like this (a hypothetical example):</p>
 
   <pre><code>yellow product ← fast dispense, shallow tip, low stir
 dark product   ← slow dispense, deep tip, steady high stir</code></pre>
